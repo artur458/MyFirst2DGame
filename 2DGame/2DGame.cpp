@@ -23,18 +23,17 @@ int WinMain()
     // Create a graphical text to display
     const Font font("Graphics\\fonts\\arial.ttf");  
 
-    Text upra(font, "\n\n\n\n\n\n\n\nManagement:\nWASD - walking.\nQE - changing the size of the player.\nRT - changing the camera size (zoom)", 20);
+    Text upra(font, "\n\n\n\n\n\n\n\nManagement:\nAD - walking.\nQE - changing the size.\nR - reset size", 20);
 
 	View camera;
 	camera.setSize(Vector2f(1000.0f, 1000.0f));
 
-	RectangleShape rectangle;
+    const Texture grass("Graphics\\textures\\grass.png");
+    RectangleShape rectangle;
     rectangle.setSize(Vector2f(500.0f, 100.0f));
     rectangle.setPosition(Vector2f(375.0f, 525.0f));
-    rectangle.setOutlineColor(Color(0, 127, 0));
 	rectangle.setOrigin(Vector2f(250.0f, 50.0f));
-    rectangle.setOutlineThickness(5.0f);
-    rectangle.setFillColor(Color::Green);
+	rectangle.setTexture(&grass);
 
     // Start the game loop
     while (window.isOpen())
@@ -50,6 +49,10 @@ int WinMain()
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) {
          player.setScale(sf::Vector2f(player.getScale().x - 0.001, player.getScale().y - 0.001));
          camera.setSize(sf::Vector2f(camera.getSize().x - 1, camera.getSize().y - 1));
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R)) {
+            player.setScale(Vector2f(0.3, 0.3));
+            camera.setSize(Vector2f(1000.0f, 1000.0f));
         }
 
         if (player.getScale().x < 0.1f && player.getScale().y < 0.1f) player.setScale(sf::Vector2f(0.1f, 0.1f));
