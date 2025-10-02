@@ -28,7 +28,7 @@ int WinMain()
     // Create a graphical text to display
     const Font font("Graphics\\fonts\\arial.ttf");  
 
-    Text upra(font, "\n\n\n\n\n\n\n\nManagement:\nAD - walking.\nQE - changing the size.\nR - reset size", 20);
+    Text upra(font, "\n\n\n\n\n\n\n\nManagement:\nAD - walking.\nQE - changing the size.\nR - reset size.\nF - rotate player.", 20);
 	View camera;
 	camera.setSize(Vector2f(1000.0f, 1000.0f));
 
