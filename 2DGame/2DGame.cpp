@@ -11,31 +11,34 @@ void PlayerMovementP(Sprite& player, Keyboard::Key key, float x, float y)
 
 int WinMain()
 {
-    // Локализация
-    setlocale(LC_ALL, "RU");
     // Создание окна 750 на 750
     RenderWindow window(VideoMode({ 750, 750 }), "2DGame C++ (V 0.01)", Style::Close);
 
-
+    // Игрок
     const Texture Playertexture("Graphics\\textures\\player.png");
     Sprite player(Playertexture);
     player.setScale(Vector2f(1.0, 1.0));
     player.setOrigin(Vector2f(27.0f, 64.0f));
     player.setPosition(Vector2f(375.0f, 375.0f));
 
+	// Оружие1 - может быть будет больше
 	const Texture gun1Texture("Graphics\\textures\\gun1.png");
     Sprite gun1(gun1Texture);
 	gun1.setScale(Vector2f(1.0, 1.0));
 	gun1.setOrigin(Vector2f(24.5f, 13.5f));
 	gun1.setPosition(Vector2f(900.0f, 450.0f));
 
-    // Create a graphical text to display
+    // Ширифт
     const Font font("Graphics\\fonts\\arial.ttf");  
-
-    Text upra(font, "\n\n\n\n\n\n\n\nManagement:\nAD - walking.\nQE - changing the size.\nR - reset size.\nF - rotate player.", 20);
-	View camera;
+    
+	// Текст с управлением
+    Text upra(font, "\n\n\n\n\n\n\n\nManagement:\nAD - walking.", 20);
+	
+    // Создание камеры
+    View camera;
 	camera.setSize(Vector2f(1000.0f, 1000.0f));
 
+	// Платформы
     const Texture grass("Graphics\\textures\\grass.png");
     RectangleShape rectangle;
     rectangle.setTexture(&grass);
@@ -58,39 +61,20 @@ int WinMain()
 
     while (window.isOpen())
     {
-
         while (const std::optional event = window.pollEvent()) { if (event->is<sf::Event::Closed>()) window.close(); }
         float playerX = player.getPosition().x, playerY = player.getPosition().y;
-        // Изменение размера игрока на Q и E
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::E)){
-         player.setScale(Vector2f(player.getScale().x + 0.001, player.getScale().y + 0.001));
-         camera.setSize(Vector2f(camera.getSize().x + 1, camera.getSize().y + 1));
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) {
-         player.setScale(Vector2f(player.getScale().x - 0.001, player.getScale().y - 0.001));
-         camera.setSize(Vector2f(camera.getSize().x - 1, camera.getSize().y - 1));
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R)) {
-            player.setScale(Vector2f(1.0, 1.0));
-            camera.setSize(Vector2f(1000.0f, 1000.0f));
-        }
 
-        if (player.getScale().x < 0.1f && player.getScale().y < 0.1f) player.setScale(sf::Vector2f(0.1f, 0.1f));
-        if (player.getScale().x > 2.0f && player.getScale().y > 2.0f) player.setScale(sf::Vector2f(2.0f, 2.0f));
-
-        if (camera.getSize().y < 250.0f && camera.getSize().x < 250.0f) camera.setSize(Vector2f(250.0f, 250.0f));
-        if (camera.getSize().y > 2500.0f && camera.getSize().x > 2500.0f) camera.setSize(Vector2f(2500.0f, 2500.0f));
-
-		// Ходьба по экрану на WASD
+		// Ходьба по экрану на AD
         PlayerMovementP(player, Keyboard::Key::A, -0.2f, 0.0f);
         PlayerMovementP(player, Keyboard::Key::D, 0.2f, 0.0f);
         if (Keyboard::isKeyPressed(Keyboard::Key::F)) player.rotate(degrees(0.2f));
 
-        // физика
+        // Физика
 		FloatRect playerBounds = player.getGlobalBounds();
 		FloatRect rectangleBounds = rectangle.getGlobalBounds();
 		FloatRect rectangle1Bounds = rectangle1.getGlobalBounds();
         FloatRect rectangle2Bounds = rectangle2.getGlobalBounds();
+        FloatRect gun1Bounds = gun1.getGlobalBounds();
 
 		player.move(Vector2f(0.0f, 0.05f));
         bool canJump;
@@ -115,9 +99,29 @@ int WinMain()
             player.setPosition(Vector2f(375.0f, 375.0f));
         }
 
+		// Оружия
+        if (playerBounds.findIntersection(gun1Bounds))
+        {
+            gun1.setPosition(Vector2f(playerX + 30, playerY - 7));
+			gun1.setScale(player.getScale());
+		}
+        else {
+            if (gun1Bounds.findIntersection(rectangleBounds) ||
+                gun1Bounds.findIntersection(rectangle1Bounds) ||
+                gun1Bounds.findIntersection(rectangle2Bounds))
+            {
+                gun1.setPosition(Vector2f(gun1.getPosition().x, gun1.getPosition().y - 0.01f));
+		    }
+            else {
+				gun1.move(Vector2f(0.0f, 0.05f));
+            }
+        }
+		if (gun1.getPosition().y >= 750.0f) gun1.setPosition(Vector2f(900.0f, 450.0f));
+
 		// Обновление камеры
         camera.setCenter(Vector2f(playerX, playerY));
 
+		// Текст с информацией
         Text textInfo(font,
             "Window:"
             "\nPosition: " + std::to_string(window.getPosition().x) + " x " + std::to_string(window.getPosition().y) +
@@ -135,7 +139,7 @@ int WinMain()
 		// Очищяем экран
         window.clear(Color(0, 145, 255));
 
-        // Draw the string
+        // Рисуем всё
         window.draw(textInfo);
         window.draw(player);
 		window.draw(gun1);
@@ -144,7 +148,7 @@ int WinMain()
 		window.draw(rectangle2);
         window.draw(upra);
 
-        // Update the window
+		// Обновляем экран
         window.display();
     }
 

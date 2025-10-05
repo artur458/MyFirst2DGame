@@ -1,24 +1,24 @@
 ﻿  2DGame.cpp
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(66,84): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(66,84): warning C4244:         with
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(66,84): warning C4244:         [
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(66,84): warning C4244:             T=float
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(66,84): warning C4244:         ]
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(66,55): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(66,55): warning C4244:         with
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(66,55): warning C4244:         [
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(66,55): warning C4244:             T=float
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(66,55): warning C4244:         ]
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(70,84): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(70,84): warning C4244:         with
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(70,84): warning C4244:         [
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(70,84): warning C4244:             T=float
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(70,84): warning C4244:         ]
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(70,55): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(70,55): warning C4244:         with
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(70,55): warning C4244:         [
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(70,55): warning C4244:             T=float
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(70,55): warning C4244:         ]
+C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(68,84): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(68,84): warning C4244:         with
+C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(68,84): warning C4244:         [
+C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(68,84): warning C4244:             T=float
+C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(68,84): warning C4244:         ]
+C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(68,55): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(68,55): warning C4244:         with
+C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(68,55): warning C4244:         [
+C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(68,55): warning C4244:             T=float
+C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(68,55): warning C4244:         ]
+C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(72,84): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(72,84): warning C4244:         with
+C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(72,84): warning C4244:         [
+C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(72,84): warning C4244:             T=float
+C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(72,84): warning C4244:         ]
+C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(72,55): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(72,55): warning C4244:         with
+C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(72,55): warning C4244:         [
+C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(72,55): warning C4244:             T=float
+C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(72,55): warning C4244:         ]
   Создание кода
   1 of 277 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
