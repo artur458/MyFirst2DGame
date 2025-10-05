@@ -11,18 +11,16 @@ void PlayerMovementP(Sprite& player, Keyboard::Key key, float x, float y)
 
 int WinMain()
 {
-	setlocale(LC_ALL, "RU");
-    // Create the main window
+    // Локализация
+    setlocale(LC_ALL, "RU");
+    // Создание окна 750 на 750
     RenderWindow window(VideoMode({ 750, 750 }), "2DGame C++ (V 0.01)", Style::Close);
-    const Image icon("Graphics\\textures\\sprite.png");
-    auto size = Vector2u{ 512, 512 };
-    window.setIcon(size, icon.getPixelsPtr());
 
 
-    const Texture texture("Graphics\\textures\\sprite.png");
+    const Texture texture("Graphics\\textures\\player.png");
     Sprite player(texture);
-    player.setScale(Vector2f(0.3, 0.3));
-    player.setOrigin(Vector2f(170.0f, 256.0f));
+    player.setScale(Vector2f(1.0, 1.0));
+    player.setOrigin(Vector2f(27.0f, 64.0f));
     player.setPosition(Vector2f(375.0f, 375.0f));
 
     // Create a graphical text to display
@@ -67,12 +65,12 @@ int WinMain()
          camera.setSize(Vector2f(camera.getSize().x - 1, camera.getSize().y - 1));
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R)) {
-            player.setScale(Vector2f(0.3, 0.3));
+            player.setScale(Vector2f(1.0, 1.0));
             camera.setSize(Vector2f(1000.0f, 1000.0f));
         }
 
         if (player.getScale().x < 0.1f && player.getScale().y < 0.1f) player.setScale(sf::Vector2f(0.1f, 0.1f));
-        if (player.getScale().x > 1.0f && player.getScale().y > 1.0f) player.setScale(sf::Vector2f(1.0f, 1.0f));
+        if (player.getScale().x > 2.0f && player.getScale().y > 2.0f) player.setScale(sf::Vector2f(2.0f, 2.0f));
 
         if (camera.getSize().y < 250.0f && camera.getSize().x < 250.0f) camera.setSize(Vector2f(250.0f, 250.0f));
         if (camera.getSize().y > 2500.0f && camera.getSize().x > 2500.0f) camera.setSize(Vector2f(2500.0f, 2500.0f));
@@ -97,16 +95,18 @@ int WinMain()
 			player.setPosition(Vector2f(playerX, playerY - 0.01f));
             canJump = true;
         }
-        else
-        {
-            canJump = false;
-        }
+        else canJump = false;
 
         if (canJump == true && Keyboard::isKeyPressed(Keyboard::Key::Space)){
             player.move(Vector2f(0.0f, -150.0f));
         }
         else if (canJump == false && Keyboard::isKeyPressed(Keyboard::Key::Space)){
             player.move(Vector2f(0.0f, 0.0f));
+        }
+
+        if (playerY >= 800.0f)
+        {
+            player.setPosition(Vector2f(375.0f, 375.0f));
         }
 
 		// Обновление камеры
