@@ -1,6 +1,7 @@
 ﻿#include <SFML/Graphics.hpp>
 #include <conio.h>
 #include <string>
+#include <SFML/OpenGL.hpp>
 
 using namespace sf;
 
@@ -67,7 +68,6 @@ int WinMain()
 		// Ходьба по экрану на AD
         PlayerMovementP(player, Keyboard::Key::A, -0.2f, 0.0f);
         PlayerMovementP(player, Keyboard::Key::D, 0.2f, 0.0f);
-        if (Keyboard::isKeyPressed(Keyboard::Key::F)) player.rotate(degrees(0.2f));
 
         // Физика
 		FloatRect playerBounds = player.getGlobalBounds();
@@ -99,6 +99,7 @@ int WinMain()
             player.setPosition(Vector2f(375.0f, 375.0f));
         }
 
+
 		// Оружия
         if (playerBounds.findIntersection(gun1Bounds))
         {
@@ -119,7 +120,10 @@ int WinMain()
 		if (gun1.getPosition().y >= 750.0f) gun1.setPosition(Vector2f(900.0f, 450.0f));
 
 		// Обновление камеры
-        camera.setCenter(Vector2f(playerX, playerY));
+        Vector2f camPos = camera.getCenter();
+        camPos.x += (playerX - camPos.x) * 0.0005f;
+        camPos.y += (playerY - camPos.y) * 0.0005f;
+        camera.setCenter(camPos);
 
 		// Текст с информацией
         Text textInfo(font,
