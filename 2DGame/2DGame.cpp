@@ -17,11 +17,17 @@ int WinMain()
     RenderWindow window(VideoMode({ 750, 750 }), "2DGame C++ (V 0.01)", Style::Close);
 
 
-    const Texture texture("Graphics\\textures\\player.png");
-    Sprite player(texture);
+    const Texture Playertexture("Graphics\\textures\\player.png");
+    Sprite player(Playertexture);
     player.setScale(Vector2f(1.0, 1.0));
     player.setOrigin(Vector2f(27.0f, 64.0f));
     player.setPosition(Vector2f(375.0f, 375.0f));
+
+	const Texture gun1Texture("Graphics\\textures\\gun1.png");
+    Sprite gun1(gun1Texture);
+	gun1.setScale(Vector2f(1.0, 1.0));
+	gun1.setOrigin(Vector2f(24.5f, 13.5f));
+	gun1.setPosition(Vector2f(900.0f, 450.0f));
 
     // Create a graphical text to display
     const Font font("Graphics\\fonts\\arial.ttf");  
@@ -132,6 +138,7 @@ int WinMain()
         // Draw the string
         window.draw(textInfo);
         window.draw(player);
+		window.draw(gun1);
 		window.draw(rectangle);
 		window.draw(rectangle1);
 		window.draw(rectangle2);
