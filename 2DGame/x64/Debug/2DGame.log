@@ -1,33 +1,5 @@
 ﻿  2DGame.cpp
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(17,36): warning C4305: аргумент: усечение из "double" в "T"
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(17,36): warning C4305:         with
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(17,36): warning C4305:         [
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(17,36): warning C4305:             T=float
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(17,36): warning C4305:         ]
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(17,31): warning C4305: аргумент: усечение из "double" в "T"
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(17,31): warning C4305:         with
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(17,31): warning C4305:         [
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(17,31): warning C4305:             T=float
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(17,31): warning C4305:         ]
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(36,91): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(36,91): warning C4244:         with
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(36,91): warning C4244:         [
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(36,91): warning C4244:             T=float
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(36,91): warning C4244:         ]
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(36,62): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(36,62): warning C4244:         with
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(36,62): warning C4244:         [
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(36,62): warning C4244:             T=float
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(36,62): warning C4244:         ]
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(40,91): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(40,91): warning C4244:         with
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(40,91): warning C4244:         [
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(40,91): warning C4244:             T=float
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(40,91): warning C4244:         ]
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(40,62): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(40,62): warning C4244:         with
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(40,62): warning C4244:         [
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(40,62): warning C4244:             T=float
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(40,62): warning C4244:         ]
-C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(19,16): warning C4930: sf::Cursor cursor(void): функция с прототипом не вызвана (предполагалось определение переменной?)
-  2DGame.vcxproj -> C:\Users\User\Desktop\Проекты\2DGame\x64\Debug\2DGame.exe
+C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(13,5): error C2731: WinMain: функция не может быть перегружена
+      C:\Users\User\Desktop\Проекты\2DGame\2DGame\2DGame.cpp(13,5):
+       см. объявление "WinMain"
+  

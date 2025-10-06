@@ -2,15 +2,19 @@
 #include <conio.h>
 #include <string>
 #include <SFML/OpenGL.hpp>
+#include <windows.h>
 
 using namespace sf;
+
+bool canJump;
+bool haveGun1;
 
 void PlayerMovementP(Sprite& player, Keyboard::Key key, float x, float y)
 {
     if (Keyboard::isKeyPressed(key)) player.move(sf::Vector2f(x, y));
 }
 
-int WinMain()
+int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
     // Создание окна 750 на 750
     RenderWindow window(VideoMode({ 750, 750 }), "2DGame C++ (V 0.01)", Style::Close);
@@ -77,7 +81,6 @@ int WinMain()
         FloatRect gun1Bounds = gun1.getGlobalBounds();
 
 		player.move(Vector2f(0.0f, 0.05f));
-        bool canJump;
         if (playerBounds.findIntersection(rectangleBounds) ||
             playerBounds.findIntersection(rectangle1Bounds) ||
 			playerBounds.findIntersection(rectangle2Bounds))
@@ -101,13 +104,14 @@ int WinMain()
 
 
 		// Оружия
-        if (playerBounds.findIntersection(gun1Bounds))
+		if (playerBounds.findIntersection(gun1Bounds)) // проверка взял ли игрок оружие
         {
             gun1.setPosition(Vector2f(playerX + 30, playerY - 7));
-			gun1.setScale(player.getScale());
+            haveGun1 = true;
 		}
         else {
-            if (gun1Bounds.findIntersection(rectangleBounds) ||
+			haveGun1 = false;
+            if (gun1Bounds.findIntersection(rectangleBounds) || // физика оружию если не в руках
                 gun1Bounds.findIntersection(rectangle1Bounds) ||
                 gun1Bounds.findIntersection(rectangle2Bounds))
             {
@@ -116,6 +120,13 @@ int WinMain()
             else {
 				gun1.move(Vector2f(0.0f, 0.05f));
             }
+        }
+        if (haveGun1 == true && Keyboard::isKeyPressed(Keyboard::Key::F)){
+            gun1.setColor(Color::Red);
+		}
+        else
+        {
+            gun1.setColor(Color::White);
         }
 		if (gun1.getPosition().y >= 750.0f) gun1.setPosition(Vector2f(900.0f, 450.0f));
 
