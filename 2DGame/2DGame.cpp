@@ -1,4 +1,5 @@
 ﻿#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 #include <conio.h>
 #include <string>
 #include <SFML/OpenGL.hpp>
@@ -14,11 +15,20 @@ void PlayerMovementP(Sprite& player, Keyboard::Key key, float x, float y)
     if (Keyboard::isKeyPressed(key)) player.move(sf::Vector2f(x, y));
 }
 
+void CameraMovementP(View& camera, float playerX, float playerY, float speed)
+{
+    Vector2f camPos = camera.getCenter();
+    camPos.x += (playerX - camPos.x) * speed;
+    camPos.y += (playerY - camPos.y) * speed;
+    camera.setCenter(camPos);
+}
+
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
+    
     // Создание окна 750 на 750
     RenderWindow window(VideoMode({ 750, 750 }), "2DGame C++ (V 0.01)", Style::Close);
-
+	GetSystemDefaultLocaleName(NULL, 0); // Русский язык в консоли
     // Игрок
     const Texture Playertexture("Graphics\\textures\\player.png");
     Sprite player(Playertexture);
@@ -37,7 +47,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     const Font font("Graphics\\fonts\\arial.ttf");  
     
 	// Текст с управлением
-    Text upra(font, "\n\n\n\n\n\n\n\nManagement:\nAD - walking.", 20);
+    Text upra(font, "\n\n\n\n\n\n\n\nManagement:\nAD - walking.\nF - Shoot", 20);
 	
     // Создание камеры
     View camera;
@@ -131,10 +141,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		if (gun1.getPosition().y >= 750.0f) gun1.setPosition(Vector2f(900.0f, 450.0f));
 
 		// Обновление камеры
-        Vector2f camPos = camera.getCenter();
-        camPos.x += (playerX - camPos.x) * 0.0005f;
-        camPos.y += (playerY - camPos.y) * 0.0005f;
-        camera.setCenter(camPos);
+        CameraMovementP(camera, playerX, playerY, 0.0005f);
 
 		// Текст с информацией
         Text textInfo(font,
@@ -151,7 +158,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             );
 
 		window.setView(camera);
-		// Очищяем экран
+		// Очищяем экран и делаем фон синим
         window.clear(Color(0, 145, 255));
 
         // Рисуем всё
