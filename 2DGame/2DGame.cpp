@@ -2,6 +2,7 @@
 #include <SFML/System.hpp>
 #include <conio.h>
 #include <string>
+#include <thread>
 #include <SFML/OpenGL.hpp>
 #include <windows.h>
 
@@ -13,6 +14,8 @@ bool haveGun1;
 void PlayerMovementP(Sprite& player, Keyboard::Key key, float x, float y)
 {
     if (Keyboard::isKeyPressed(key)) player.move(sf::Vector2f(x, y));
+	if (Keyboard::isKeyPressed(Keyboard::Key::A)) player.setScale(Vector2f(-1.0, 1.0));
+	if (Keyboard::isKeyPressed(Keyboard::Key::D)) player.setScale(Vector2f(1.0, 1.0));
 }
 
 void CameraMovementP(View& camera, float playerX, float playerY, float speed)
@@ -42,6 +45,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	gun1.setScale(Vector2f(1.0, 1.0));
 	gun1.setOrigin(Vector2f(24.5f, 13.5f));
 	gun1.setPosition(Vector2f(900.0f, 450.0f));
+
+	const Texture bullet1Texture("Graphics\\textures\\bullet1.png");
+	Sprite bullet1(bullet1Texture);
+	bullet1.setOrigin(Vector2f(4.0f, 2.5f));
+	bullet1.setScale(Vector2f(0.0f, 0.0f)); // делаем невидимой пока не выстрелит
 
     // Ширифт
     const Font font("Graphics\\fonts\\arial.ttf");  
@@ -74,10 +82,16 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     rectangle2.setOrigin(Vector2f(250.0f, 50.0f));
 
 
+	Text playerPos(font, std::to_string(player.getPosition().x) + ", " + std::to_string(player.getPosition().y), 15);
+
+
     while (window.isOpen())
     {
         while (const std::optional event = window.pollEvent()) { if (event->is<sf::Event::Closed>()) window.close(); }
-        float playerX = player.getPosition().x, playerY = player.getPosition().y;
+		float playerX = player.getPosition().x, playerY = player.getPosition().y; // Координаты игрока
+
+		playerPos.setPosition(Vector2f(playerX, playerY-100.0f)); // Позиция текста с координатами игрока
+		playerPos.setString(std::to_string(playerX) + ", " + std::to_string(playerY)); // Текст с координатами игрока
 
 		// Ходьба по экрану на AD
         PlayerMovementP(player, Keyboard::Key::A, -0.2f, 0.0f);
@@ -113,14 +127,16 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         }
 
 
-		// Оружия
+
+		// Оружие
 		if (playerBounds.findIntersection(gun1Bounds)) // проверка взял ли игрок оружие
         {
-            gun1.setPosition(Vector2f(playerX + 30, playerY - 7));
+            gun1.setScale(Vector2f(player.getScale().x, 1.0f)); // Поворот оружия в зависимости от игрока
+            gun1.setPosition(Vector2f(playerX, playerY));
             haveGun1 = true;
 		}
         else {
-			haveGun1 = false;
+			haveGun1 = false;   
             if (gun1Bounds.findIntersection(rectangleBounds) || // физика оружию если не в руках
                 gun1Bounds.findIntersection(rectangle1Bounds) ||
                 gun1Bounds.findIntersection(rectangle2Bounds))
@@ -131,8 +147,13 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 				gun1.move(Vector2f(0.0f, 0.05f));
             }
         }
-        if (haveGun1 == true && Keyboard::isKeyPressed(Keyboard::Key::F)){
-            gun1.setColor(Color::Red);
+
+
+        if (haveGun1 == true && Keyboard::isKeyPressed(Keyboard::Key::F)) {
+			bullet1.setPosition(Vector2f(playerX, playerY));
+            bullet1.setScale(Vector2f(3.0f, 3.0f));
+            if (player.getScale().x == -1.0f) bullet1.move(Vector2f(-0.5f, 0.0f));
+		    else bullet1.move(Vector2f(0.5f, 0.0f));
 		}
         else
         {
@@ -162,9 +183,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         window.clear(Color(0, 145, 255));
 
         // Рисуем всё
+		window.draw(playerPos);
         window.draw(textInfo);
         window.draw(player);
-		window.draw(gun1);
+        window.draw(bullet1);
+        window.draw(gun1);
 		window.draw(rectangle);
 		window.draw(rectangle1);
 		window.draw(rectangle2);
