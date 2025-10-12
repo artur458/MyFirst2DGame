@@ -150,13 +150,17 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 
         if (haveGun1 == true && Keyboard::isKeyPressed(Keyboard::Key::F)) {
-			bullet1.setPosition(Vector2f(playerX, playerY));
             bullet1.setScale(Vector2f(3.0f, 3.0f));
-            if (player.getScale().x == -1.0f) bullet1.move(Vector2f(-0.5f, 0.0f));
+            if (player.getScale().x == -1.0f) {
+                bullet1.move(Vector2f(-0.5f, 0.0f));
+                bullet1.setScale(Vector2f(-3.f, -3.f));
+            }
 		    else bullet1.move(Vector2f(0.5f, 0.0f));
 		}
         else
         {
+            bullet1.setPosition(Vector2f(playerX, playerY));
+            bullet1.setScale(Vector2f(0.0f, 0.0f));
             gun1.setColor(Color::White);
         }
 		if (gun1.getPosition().y >= 750.0f) gun1.setPosition(Vector2f(900.0f, 450.0f));
